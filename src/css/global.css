@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.select-transactions_off {
+  @starting-style {
+    display: none;
+  }
+}
+
+.select-transactions_display {
+  display: block;
+  transition: display 0.5s ease-in;
+  transition-behavior: allow-discrete;
+}
