@@ -13,3 +13,13 @@
   transition: display 0.5s ease-in;
   transition-behavior: allow-discrete;
 }
+
+.fromIngressButton {
+  transform: translate(100%, 0%);
+  transition: all 200ms ease-in;
+}
+
+.fromEgressButton {
+  transform: translate(0%, 0%);
+  transition: all 200ms ease-in;
+}

@@ -1,79 +1,141 @@
 <!DOCTYPE html>
 <html lang="es" class="w-full h-full">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Finance</title>
-    <link rel="stylesheet" href="./css/output.css">
+    <link rel="stylesheet" href="./css/output.css" />
 
-    <link rel="stylesheet" href="./css/global.css">
+    <link rel="stylesheet" href="./css/global.css" />
 
     <script src="./js/main.js" defer></script>
-</head>
+  </head>
 
-<body class="w-full h-full">
+  <body class="w-full h-full">
     <!-- Contener dor de estado actual -->
-    <div class="w-full  flex flex-col justify-center items-center space-y-6 pt-20">
-        <div><span class="text-5xl font-bold text-slate-800">Presupuesto de Septiembre 2024</span></div>
-        <div class=""><span class="text-5xl font-bold text-slate-800">+ $500.00</span></div>
-        <div class="flex flex-col gap-y-6">
-            <button type="button"
-                class="uppercase flex justify-between items-center w-[450px] bg-slate-800 rounded-sm text-white font-semibold px-24 py-6 text-xl"><span>ingresos:</span><span>+800.00</span></button>
-            <button type="button"
-                class="uppercase flex justify-between items-center w-[450px] border-4 rounded-sm border-slate-800 text-slate-800 font-semibold px-24 py-6 text-xl"><span>egresos:</span><span>-300.00</span></button>
-        </div>
-        <div class="flex justify-center items-center gap-x-4"><span class="text-2xl text-slate-800 font-bold">Porcentaje
-                de
-                gastos: </span><span id="expensePercentage"
-                class="bg-slate-800 p-4 text-white rounded-md font-bold">12%</span>
-        </div>
+    <div
+      class="w-full flex flex-col justify-center items-center space-y-6 pt-20"
+    >
+      <div>
+        <span class="text-5xl font-bold text-slate-800"
+          >Presupuesto de Septiembre 2024</span
+        >
+      </div>
+      <div class="">
+        <span class="text-5xl font-bold text-slate-800">+ $500.00</span>
+      </div>
+      <div class="flex flex-col gap-y-6">
+        <button
+          type="button"
+          class="uppercase flex justify-between items-center w-[450px] bg-slate-800 rounded-sm text-white font-semibold px-24 py-6 text-xl"
+        >
+          <span>ingresos:</span><span>+800.00</span>
+        </button>
+        <button
+          type="button"
+          class="uppercase flex justify-between items-center w-[450px] border-4 rounded-sm border-slate-800 text-slate-800 font-semibold px-24 py-6 text-xl"
+        >
+          <span>egresos:</span><span>-300.00</span>
+        </button>
+      </div>
+      <div class="flex justify-center items-center gap-x-4">
+        <span class="text-2xl text-slate-800 font-bold"
+          >Porcentaje de gastos: </span
+        ><span
+          id="expensePercentage"
+          class="bg-slate-800 p-4 text-white rounded-md font-bold"
+          >12%</span
+        >
+      </div>
     </div>
 
     <!-- contenedor de agregar transacción y listar transacciones -->
     <div class="flex flex-col md:flex-row w-full h-full md:h-[500px]">
-        <!-- add transacction -->
-        <div class="w-full md:w-1/2 h-full bg-slate-100 flex justify-center items-center">
-
-            <div class="flex flex-col">
-
-
-                <div class="w-full space-y-10">
-                    <div><span
-                            class="text-center text-2xl text-gray-600 px-3 py-1 bg-gray-200 rounded-full">+</span><span
-                            class="text-3xl font-bold text-slate-800">Transacción</span></div>
-
-                    <select name="transaction-type" id="transaction-select"
-                        class="text-gray-500 px-6 py-4 border-2 border-gray-300 rounded-md w-full">
-                        <option value="" class="text-gray-500">Ingreso | Egreso </option>
-                        <option value="ingress" class="text-slate-800">Ingreso</option>
-                        <option value="egress" class="text-slate-800">Egreso</option>
-                    </select>
-
-                    <div>
-                        <input type="text" class="px-6 py-4 border-2 border-gray-300 rounded-md w-full"
-                            name="description" id="transactionDescription" placeholder="Descripción">
-                    </div>
-
-                    <div>
-                        <input type="text" class="px-6 py-4 border-2 border-gray-300 rounded-md w-full" name="amount"
-                            id="transactionAmount" placeholder="Monto">
-                    </div>
-
-                    <div class="flex w-full justify-center">
-                        <button type="button"
-                            class="bg-slate-800 text-white px-8 py-2.5 rounded-md font-semibold">Agregar</button>
-                    </div>
-                </div>
-
+      <!-- add transacction -->
+      <div
+        class="w-full md:w-1/2 h-full bg-slate-100 flex justify-center items-center"
+      >
+        <div class="flex flex-col">
+          <div class="w-full space-y-10">
+            <div>
+              <span
+                class="text-center text-2xl text-gray-600 px-3 py-1 bg-gray-200 rounded-full"
+                >+</span
+              ><span class="text-3xl font-bold text-slate-800"
+                >Transacción</span
+              >
             </div>
 
-        </div>
-        <!-- list transacttions -->
-        <div class=" w-1/2">
+            <select
+              name="transaction-type"
+              id="transaction-select"
+              class="text-gray-500 px-6 py-4 border-2 border-gray-300 rounded-md w-full"
+            >
+              <option value="" class="text-gray-500">Ingreso | Egreso</option>
+              <option value="ingress" class="text-slate-800">Ingreso</option>
+              <option value="egress" class="text-slate-800">Egreso</option>
+            </select>
 
+            <div>
+              <input
+                type="text"
+                class="px-6 py-4 border-2 border-gray-300 rounded-md w-full"
+                name="description"
+                id="transactionDescription"
+                placeholder="Descripción"
+              />
+            </div>
+
+            <div>
+              <input
+                type="text"
+                class="px-6 py-4 border-2 border-gray-300 rounded-md w-full"
+                name="amount"
+                id="transactionAmount"
+                placeholder="Monto"
+              />
+            </div>
+
+            <div class="flex w-full justify-center">
+              <button
+                type="button"
+                class="bg-slate-800 text-white px-8 py-2.5 rounded-md font-semibold"
+              >
+                Agregar
+              </button>
+            </div>
+          </div>
         </div>
+      </div>
+      <!-- list transacttions -->
+      <div
+        class="w-full md:w-1/2 h-full bg-slate-100 flex justify-center items-center"
+      >
+        <div class="w-full p-8">
+          <!-- transaction tab -->
+          <div
+            class="w-full flex rounded-md bg-gray-400 cursor-pointer relative"
+          >
+            <div
+              class="absolute w-1/2 h-full bg-slate-800 z-0 rounded-md"
+              id="currentTabBackground"
+            ></div>
+            <div
+              class="w-1/2 h-12 text-white rounded-md flex justify-center items-center z-10"
+              id="ingresTabButton"
+              active-button="1"
+            >
+              <span>Ingresos</span>
+            </div>
+            <div
+              class="w-1/2 h-12 text-white rounded-r-md flex justify-center items-center z-10"
+              id="egressTabButton"
+            >
+              <span>Egresos</span>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-</body>
-
+  </body>
 </html>
