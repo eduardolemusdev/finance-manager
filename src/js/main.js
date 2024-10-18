@@ -38,5 +38,19 @@ saveTransactionBtn.addEventListener("click", async () => {
   };
 
   await _transactionsService.saveTransaction(accountIdValue, transactionItem);
-  listTransacctionsByType(transactionSelect.value);
+  const isIngressSelected =
+    transactionSelect.value === "INGRESS" &&
+    ingressTabButton.getAttribute(activeAttribute) === "1";
+
+  const isEgressSelected =
+    transactionSelect.value === "EGRESS" &&
+    egressTabButton.getAttribute(activeAttribute) === "1";
+
+  if (isEgressSelected) {
+    listTransacctionsByType(transactionSelect.value);
+  }
+
+  if (isIngressSelected) {
+    listTransacctionsByType(transactionSelect.value);
+  }
 });
