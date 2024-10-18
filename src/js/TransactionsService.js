@@ -5,7 +5,7 @@ class TransactionsService {
     this.#initDatabase();
   }
 
-  saveTransaction(accountId, transaction) {
+  async saveTransaction(accountId, transaction) {
     const accountsString = localStorage.getItem(this.#accountIngress);
 
     const registeredAccounts = JSON.parse(accountsString);
@@ -60,15 +60,19 @@ class TransactionsService {
     }
 
     const registeredAccounts = JSON.parse(accountsString);
-    console.log(registeredAccounts);
+    console.log(registeredAccounts, accountId);
 
     const currentAccount = registeredAccounts.find(
       (account) => account.accountId === accountId
     );
 
-    return currentAccount.transactionHistory.filter(
-      (transaction) => transaction.type === type
-    );
+    console.log("x", currentAccount, accountId);
+
+    return currentAccount
+      ? currentAccount.transactionHistory.filter(
+          (transaction) => transaction.type === type
+        )
+      : [];
   }
 
   #initDatabase() {
