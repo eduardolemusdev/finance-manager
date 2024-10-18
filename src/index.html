@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="./css/output.css" />
 
     <link rel="stylesheet" href="./css/global.css" />
-
+    <script src="./js/TransactionsService.js" defer></script>
     <script src="./js/main.js" defer></script>
   </head>
 
@@ -16,6 +16,16 @@
     <div
       class="w-full flex flex-col justify-center items-center space-y-6 pt-20"
     >
+      <div>
+        <label for="account" class="text-xl font-semibold">Cuenta ID: </label>
+        <input
+          type="text"
+          name="account"
+          id="accountIdInput"
+          class="px-8 py-4 border-2 border-gray-500 rounded-sm"
+          value="00001"
+        />
+      </div>
       <div>
         <span class="text-5xl font-bold text-slate-800"
           >Presupuesto de Septiembre 2024</span
@@ -71,9 +81,11 @@
               id="transaction-select"
               class="text-gray-500 px-6 py-4 border-2 border-gray-300 rounded-md w-full"
             >
-              <option value="" class="text-gray-500">Ingreso | Egreso</option>
-              <option value="ingress" class="text-slate-800">Ingreso</option>
-              <option value="egress" class="text-slate-800">Egreso</option>
+              <option value="none" class="text-gray-500">
+                Ingreso | Egreso
+              </option>
+              <option value="INGRESS" class="text-slate-800">Ingreso</option>
+              <option value="EGRESS" class="text-slate-800">Egreso</option>
             </select>
 
             <div>
@@ -100,6 +112,7 @@
               <button
                 type="button"
                 class="bg-slate-800 text-white px-8 py-2.5 rounded-md font-semibold"
+                id="saveTransactionBtn"
               >
                 Agregar
               </button>
@@ -108,10 +121,8 @@
         </div>
       </div>
       <!-- list transacttions -->
-      <div
-        class="w-full md:w-1/2 h-full bg-slate-100 flex justify-center items-center"
-      >
-        <div class="w-full p-8">
+      <div class="w-full md:w-1/2 h-full bg-slate-100">
+        <div class="w-full p-10">
           <!-- transaction tab -->
           <div
             class="w-full flex rounded-md bg-gray-400 cursor-pointer relative"
@@ -134,6 +145,10 @@
               <span>Egresos</span>
             </div>
           </div>
+          <div
+            id="transacctionsListContainer"
+            class="flex flex-col space-y-2 pt-8"
+          ></div>
         </div>
       </div>
     </div>
