@@ -60,19 +60,64 @@ class TransactionsService {
     }
 
     const registeredAccounts = JSON.parse(accountsString);
-    console.log(registeredAccounts, accountId);
 
     const currentAccount = registeredAccounts.find(
       (account) => account.accountId === accountId
     );
-
-    console.log("x", currentAccount, accountId);
 
     return currentAccount
       ? currentAccount.transactionHistory.filter(
           (transaction) => transaction.type === type
         )
       : [];
+  }
+
+  async getAccountAvailableAmount(accountId) {
+    const ingressTransactionsTotal = await this.getAccountTotalIngressAmount(
+      accountId
+    );
+    const egressTransactionsTotal = await this.getAccountTotalEgressAmount(
+      accountId
+    );
+
+    const totalAvailableAmount =
+      ingressTransactionsTotal - egressTransactionsTotal;
+
+    return totalAvailableAmount.toFixed(2);
+  }
+
+  async getAccountTotalIngressAmount(accountId) {
+    return this.getTransactionsByAccountId(
+      accountId,
+      TRANSACCTIONS_TYPES.INGRESS
+    )
+      .map((transaction) => parseFloat(transaction.amount))
+      .reduce((prev, curr) => prev + curr, 0);
+  }
+
+  async getAccountTotalEgressAmount(accountId) {
+    return this.getTransactionsByAccountId(
+      accountId,
+      TRANSACCTIONS_TYPES.EGRESS
+    )
+      .map((transaction) => parseFloat(transaction.amount))
+      .reduce((prev, curr) => prev + curr, 0);
+  }
+
+  async getAccountPercentEgressTotal(accountId) {
+    const totalIngress = await this.getAccountTotalIngressAmount(accountId);
+    const totalEgress = await this.getAccountTotalEgressAmount(accountId);
+
+    const egressPercent = (totalEgress * 100) / totalIngress;
+
+    return egressPercent;
+  }
+
+  async getAccountPercentPerTransaction(accountId, egressAmountTransaction) {
+    const totalAccountIngress = await this.getAccountTotalIngressAmount(
+      accountId
+    );
+    return (egressAmountTransaction * 100) / totalAccountIngress;
   }
 
   #initDatabase() {

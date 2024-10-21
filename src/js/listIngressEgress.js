@@ -14,15 +14,13 @@ const listTransacctionsByType = async (type) => {
     type
   );
 
-  console.log("TRANSACTIONS", transacctions);
-
   const signByType = type === TRANSACCTIONS_TYPES.INGRESS ? "+" : "-";
 
   // llamamos la funcion cada vez que hacemos un cambio de lista
   removeTransactionItems();
 
   // generamos y agregamos los transaction items al doom
-  transacctions.forEach((transacction) => {
+  transacctions.forEach(async (transacction) => {
     const div = document.createElement("div");
     div.className =
       "border-2 border-gray-400 flex justify-between px-6 py-2 text-slate-800 font-semibold rounded-sm transacctionItem";
@@ -35,8 +33,19 @@ const listTransacctionsByType = async (type) => {
     spanAmount.id = "transacctionAmount";
     spanAmount.textContent = `${signByType} $ ${transacction.amount}`;
 
+    const spanPercent = document.createElement("span");
+    const egressAmount = parseFloat(transacction.amount).toFixed(2);
+    const egressPercent =
+      await _transactionsService.getAccountPercentPerTransaction(
+        accountIdValue,
+        egressAmount
+      );
+
+    spanPercent.textContent = `${egressPercent.toFixed(2)} %`;
+
     div.appendChild(spanDescription);
     div.appendChild(spanAmount);
+    div.appendChild(spanPercent);
 
     transacctionsListContainer.appendChild(div);
   });

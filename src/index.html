@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="./css/output.css" />
 
     <link rel="stylesheet" href="./css/global.css" />
+    <script src="./js/utils.js" defer></script>
     <script src="./js/transactionsService.js" defer></script>
     <script src="./js/appElements.js" defer></script>
     <script src="./js/listIngressEgress.js" defer></script>
@@ -26,27 +27,37 @@
           id="accountIdInput"
           class="px-8 py-4 border-2 border-gray-500 rounded-sm"
         />
+        <button
+          type="button"
+          class="bg-slate-800 text-white px-8 py-2.5 rounded-md font-semibold"
+          id="loadAccountBtn"
+        >
+          Cargar
+        </button>
       </div>
       <div>
         <span class="text-5xl font-bold text-slate-800"
-          >Presupuesto de Septiembre 2024</span
-        >
+          >Presupuesto de <span id="currentMonthSpan"></span
+        ></span>
       </div>
       <div class="">
-        <span class="text-5xl font-bold text-slate-800">+ $500.00</span>
+        <span
+          class="text-5xl font-bold text-slate-800"
+          id="totalAvailableAmount"
+        ></span>
       </div>
       <div class="flex flex-col gap-y-6">
         <button
           type="button"
           class="uppercase flex justify-between items-center w-[450px] bg-slate-800 rounded-sm text-white font-semibold px-24 py-6 text-xl"
         >
-          <span>ingresos:</span><span>+800.00</span>
+          <span>ingresos:</span><span id="totalIngressSpan"></span>
         </button>
         <button
           type="button"
           class="uppercase flex justify-between items-center w-[450px] border-4 rounded-sm border-slate-800 text-slate-800 font-semibold px-24 py-6 text-xl"
         >
-          <span>egresos:</span><span>-300.00</span>
+          <span>egresos:</span><span id="totalEgressSpan"></span>
         </button>
       </div>
       <div class="flex justify-center items-center gap-x-4">
@@ -61,7 +72,7 @@
     </div>
 
     <!-- contenedor de agregar transacción y listar transacciones -->
-    <div class="flex flex-col md:flex-row w-full h-full md:h-[500px]">
+    <div class="flex flex-col md:flex-row w-full h-full md:h-[550px]">
       <!-- add transacction -->
       <div
         class="w-full md:w-1/2 h-full bg-slate-100 flex justify-center items-center"
@@ -148,7 +159,7 @@
           </div>
           <div
             id="transacctionsListContainer"
-            class="flex flex-col space-y-2 pt-8"
+            class="flex flex-col h-96 overflow-y-auto pt-6 space-y-2"
           ></div>
         </div>
       </div>
