@@ -88,7 +88,6 @@ class TransactionsService {
 
     return totalAvailableAmount.toFixed(2);
   }
-
   async getAccountTotalIngressAmount(accountId) {
     return this.getTransactionsByAccountId(
       accountId,

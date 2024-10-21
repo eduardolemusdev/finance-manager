@@ -34,19 +34,22 @@ const listTransacctionsByType = async (type) => {
     spanAmount.id = "transacctionAmount";
     spanAmount.textContent = `${signByType} $ ${transacction.amount}`;
 
-    const spanPercent = document.createElement("span");
-    const egressAmount = parseFloat(transacction.amount).toFixed(2);
-    const egressPercent =
-      await _transactionsService.getAccountPercentPerTransaction(
-        accountIdValue,
-        egressAmount
-      );
-
-    spanPercent.textContent = `${egressPercent.toFixed(2)} %`;
-
     div.appendChild(spanDescription);
     div.appendChild(spanAmount);
-    div.appendChild(spanPercent);
+
+    if (transacction.type === "EGRESS") {
+      const spanPercent = document.createElement("span");
+      spanPercent.className = "px-2 py-1 bg-slate-800 text-white rounded-sm";
+      const egressAmount = parseFloat(transacction.amount).toFixed(2);
+      const egressPercent =
+        await _transactionsService.getAccountPercentPerTransaction(
+          accountIdValue,
+          egressAmount
+        );
+
+      spanPercent.textContent = `${egressPercent.toFixed(2)} %`;
+      div.appendChild(spanPercent);
+    }
 
     transacctionsListContainer.appendChild(div);
   });
