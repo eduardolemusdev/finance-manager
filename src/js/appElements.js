@@ -1,5 +1,3 @@
-const ingressTabButton = document.getElementById("ingresTabButton");
-const egressTabButton = document.getElementById("egressTabButton");
 const currentTabButton = document.getElementById("currentTabBackground");
 const saveTransactionBtn = document.getElementById("saveTransactionBtn");
 

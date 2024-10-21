@@ -15,6 +15,9 @@ class TransactionsService {
 
     // se registra una cuenta por primera vez
     if (!currentAccount) {
+      alert(
+        "Nueva cuenta registrada!, oprime el boton de recargar para obtener la información"
+      );
       const newAccount = {
         accountId,
         transactionHistory: [transaction],

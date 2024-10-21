@@ -82,23 +82,34 @@ document
   });
 
 const listTransacctionsByTabValue = () => {
+  const ingressTabButton = document.getElementById("ingresTabButton");
+  const egressTabButton = document.getElementById("egressTabButton");
+  const activeAttribute = "active-button";
   const transactionSelect = document.getElementById("transaction-select");
   const transactionSelectValue =
     transactionSelect.value === "none" ? "INGRESS" : transactionSelect.value;
 
   // validamos que al agregar una transaccion solo se pueda listar el item si el tipo del select es igual que el del tab
   const isIngressSelected =
-    transactionSelectValue &&
-    ingressTabButton.getAttribute(activeAttribute) === "1";
+    ingressTabButton.getAttribute(activeAttribute) === "1" &&
+    transactionSelectValue === "INGRESS";
 
   const isEgressSelected =
-    transactionSelectValue &&
-    egressTabButton.getAttribute(activeAttribute) === "1";
+    egressTabButton.getAttribute(activeAttribute) === "1" &&
+    transactionSelectValue === "EGRESS";
 
-  const isEqualSelectValueAndTransacctionList =
-    isEgressSelected || isIngressSelected;
+  console.log(
+    "equal",
+    ingressTabButton.getAttribute(activeAttribute),
+    egressTabButton.getAttribute(activeAttribute),
+    transactionSelectValue
+  );
 
-  if (isEqualSelectValueAndTransacctionList) {
+  if (isEgressSelected) {
+    listTransacctionsByType(transactionSelectValue);
+  }
+
+  if (isIngressSelected) {
     listTransacctionsByType(transactionSelectValue);
   }
 };

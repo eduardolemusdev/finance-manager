@@ -1,5 +1,6 @@
 const activeAttribute = "active-button";
-
+const ingressTabButton = document.getElementById("ingresTabButton");
+const egressTabButton = document.getElementById("egressTabButton");
 // removemo items por su clase
 const removeTransactionItems = () => {
   const transactionItems = document.querySelectorAll(".transacctionItem");
